@@ -39,7 +39,7 @@ body > .main {
 .app-container .box {
   overflow: auto;
 }
-
+/* Till this part it is common for all DS */
 .app-container .box .box_item {
   border: 1px solid black;
   padding: 4px 80px;
