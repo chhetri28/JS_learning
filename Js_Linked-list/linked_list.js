@@ -38,6 +38,7 @@ class LinkedList {
       current.next = node;
     }
     this.count++;
+    return node;
   }
   indexOf(element){
       let current=this.head;
@@ -75,7 +76,7 @@ class LinkedList {
         previous.next=current.next;
     }
     this.count--;
-    return current.element;
+    return current;
   }
   remove(element){
       const index =this.indexOf(element);
