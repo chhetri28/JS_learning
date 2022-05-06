@@ -70,4 +70,46 @@ class BinarySearchTree {
             return insertedNode;
         }
     }
+
+    remove(value, node) {
+        node = node ? node : this.search(value);
+        if (!node) return null;
+    
+        const nodeIsRoot = node.parent === null;
+        const hasBothChildren = node.left !== null && node.right !== null;
+        const isLeftChild = !nodeIsRoot ? node.parent.left === node : false;
+    
+        if (node.isLeaf) {
+          if (nodeIsRoot) {
+            this.root = null;
+          } else if (isLeftChild) {
+            node.parent.left = null;
+          } else {
+            node.parent.right = null;
+          }
+          return node;
+        }
+        if (!hasBothChildren) {
+          const child = node.left !== null ? node.left : node.right;
+          if (nodeIsRoot) {
+            this.root = child;
+          } else if (isLeftChild) {
+            node.parent.left = child;
+          } else {
+            node.parent.right = child;
+          }
+          child.parent = node.parent;
+          return node;
+        }
+    
+        const minRightLeaf = this.min(node.right);
+        if (minRightLeaf.parent.left === minRightLeaf) {
+          minRightLeaf.parent.left = null;
+        } else {
+          minRightLeaf.parent.right = null;
+        }
+        const clone = { ...node };
+        node.value = minRightLeaf.value;
+        return clone;
+      }
 }
