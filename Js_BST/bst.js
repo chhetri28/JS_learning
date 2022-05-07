@@ -111,5 +111,22 @@ class BinarySearchTree {
         const clone = { ...node };
         node.value = minRightLeaf.value;
         return clone;
+    }
+    search(value) {
+        return this.postOrderTraverse().find((node) => node.value === value);
+      }
+      min(node = this.root) {
+        let current = node;
+        while (current !== null && current.left !== null) {
+          current = current.left;
+        }
+        return current;
+      }
+      max(node = this.root) {
+        let current = node;
+        while (current !== null && current.right !== null) {
+          current = current.right;
+        }
+        return current;
       }
 }
