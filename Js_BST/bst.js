@@ -129,4 +129,17 @@ class BinarySearchTree {
         }
         return current;
       }
+      inOrderTraverse(node = this.root, traversed = []) {
+        if (node === null) {
+          return traversed;
+        }
+        if (node.left) {
+          traversed.push(...this.inOrderTraverse(node.left));
+        }
+        traversed.push(node);
+        if (node.right) {
+          traversed.push(...this.inOrderTraverse(node.right));
+        }
+        return traversed;
+      }
 }
