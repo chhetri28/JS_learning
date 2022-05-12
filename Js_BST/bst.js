@@ -142,4 +142,30 @@ class BinarySearchTree {
         }
         return traversed;
       }
+      preOrderTraverse(node = this.root, traversed = []) {
+        if (node === null) {
+          return traversed;
+        }
+        traversed.push(node);
+        if (node.left) {
+          traversed.push(...this.preOrderTraverse(node.left));
+        }
+        if (node.right) {
+          traversed.push(...this.preOrderTraverse(node.right));
+        }
+        return traversed;
+      }
+      postOrderTraverse(node = this.root, traversed = []) {
+        if (node === null) {
+          return traversed;
+        }
+        if (node.left) {
+          traversed.push(...this.postOrderTraverse(node.left));
+        }
+        if (node.right) {
+          traversed.push(...this.postOrderTraverse(node.right));
+        }
+        traversed.push(node);
+        return traversed;
+      }
 }
