@@ -26,5 +26,9 @@ class BinarySearchTreeUI{
           `${this.config.HIGHLIGHT_TIME / 1000}s`
         );
       }
-      
+      traverseUINodes(nodes) {
+        nodes.reduce((pr, node) => {
+          return pr.then(() => this.highlightNode(node));
+        }, Promise.resolve());
+      }
 }
