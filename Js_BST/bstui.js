@@ -31,4 +31,28 @@ class BinarySearchTreeUI{
           return pr.then(() => this.highlightNode(node));
         }, Promise.resolve());
       }
+      getTreeUI(node) {
+        const { left, right, value } = node;
+        if (!node) {
+          return '';
+        }
+        return `
+          <div class="node__element" data-node-id="${value}">${value}</div>
+          ${
+            left || right
+              ? `
+                <div class="node__bottom-line"></div>
+                <div class="node__children">
+                <div class="node node--left">
+                  ${left ? this.getTreeUI(left) : ''}
+                </div>
+                <div class="node node--right">
+                  ${right ? this.getTreeUI(right) : ''}
+                </div>
+                </div>
+              `
+              : ''
+          }
+        `;
+      }
 }
