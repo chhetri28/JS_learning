@@ -55,4 +55,15 @@ class BinarySearchTreeUI{
           }
         `;
       }
+      renderTree(
+        node = this.tree.root,
+        containerSelector = this.treeContainerSelector
+      ) {
+        const treeContainer = document.querySelector(containerSelector);
+        if (!node) {
+          return (treeContainer.innerHTML = '');
+        }
+        const template = this.getTreeUI(node);
+        treeContainer.innerHTML = template;
+      }
 }
