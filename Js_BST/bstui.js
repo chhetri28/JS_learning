@@ -66,4 +66,13 @@ class BinarySearchTreeUI{
         const template = this.getTreeUI(node);
         treeContainer.innerHTML = template;
       }
+      highlightNode({ value }) {
+        const nodeElement = document.querySelector(`[data-node-id="${value}"]`);
+        if (this.highlightTimer !== null) {
+          clearTimeout(this.highlightTimer);
+          nodeElement.classList.remove(this.config.HIGHLIGHT_CLASS);
+          this.highlightTimer = null;
+          return;
+        }
+      }
 }
