@@ -75,4 +75,18 @@ class BinarySearchTreeUI{
           return;
         }
       }
+    nodeElement.classList.add(this.config.HIGHLIGHT_CLASS);
+    document.querySelectorAll('button').forEach((btn) => {
+      btn.setAttribute('disabled', true);
+    });
+    return new Promise((resolve) => {
+      this.highlightTimer = setTimeout(() => {
+        nodeElement.classList.remove(this.config.HIGHLIGHT_CLASS);
+        document.querySelectorAll('button').forEach((btn) => {
+          btn.removeAttribute('disabled');
+        });
+        this.highlightTimer = null;
+        resolve();
+      }, this.config.HIGHLIGHT_TIME);
+    });
 }
