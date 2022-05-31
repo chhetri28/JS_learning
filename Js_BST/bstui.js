@@ -89,4 +89,15 @@ class BinarySearchTreeUI{
         resolve();
       }, this.config.HIGHLIGHT_TIME);
     });
+    onRemoveElementBtnClick() {
+      const element = prompt('Enter element to remove from the tree');
+      const removedEl = this.tree.remove(element);
+      if (removedEl) {
+        this.highlightNode(removedEl).then(() => {
+          this.render(this.tree.root);
+        });
+      } else {
+        alert('Element not found');
+      }
+    }
 }
